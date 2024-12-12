@@ -22,6 +22,24 @@ window.onload = () => {
   messageForm.style.display = "none";
 };
 
+socket.on("connect_error", (error) => {
+  if (
+    error.message === "Authentication error" ||
+    error.message === "jwt expired"
+  ) {
+    handleSessionExpiry();
+  }
+});
+
+function handleSessionExpiry() {
+  alert("Your session has expired. Please sign in again.");
+  localStorage.removeItem("token");
+  localStorage.removeItem("username");
+  localStorage.removeItem("receiver");
+  
+  window.location.href = "index.html";
+}
+
 messageForm.addEventListener("submit", (e) => {
   e.preventDefault();
   if (message.value == "") return;
@@ -82,8 +100,8 @@ function scrollToBottom() {
 }
 
 socket.on("chat-list", (data) => {
-  console.log(data)
-})
+  console.log(data);
+});
 // Display users on the chat home
 const userList = document.getElementById("user-list");
 socket.on("chat-list", (data) => {
