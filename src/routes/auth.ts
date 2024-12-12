@@ -56,7 +56,7 @@ auth.post("/sign-in", async (req: Request, res: Response) => {
         const token = jwt.sign(
           { sub: userExists._id.toHexString(), username: username },
           process.env.JWT_SECRET!,
-          { expiresIn: "2d" }
+          { expiresIn: "90d" }
         );
 
         const userId = userExists._id.toHexString();
