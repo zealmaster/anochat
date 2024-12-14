@@ -8,15 +8,22 @@
 </head>
 
 <body>
-    <main>
-        <div>
-            <nav class="app-name">
-                <span>Anochat</span>
+    <div>
+        <nav class="app-name">
+            <div>
+                <span><a href="users.html"> Anochat </a></span>
+            </div>
+            <div>
+                <!-- <span id="home">
+                    <a href="users.html"> Home </a>
+                </span>  -->
                 <span id="logout">
-                    <img src="logout-icon.webp" height="15px" width="15px" />
-                </span>
-            </nav>
-        </div>
+                   Logout 
+            </div>
+        </nav>
+    </div>
+    <main>
+        
 
         <div class="users-container">
             <ul class="all-users" id="all-users">
@@ -50,7 +57,7 @@
                 const displayPic = document.createElement("img");
                 // const displayPic = `<img `;
                 displayPic.setAttribute("class", "user-list-display-pic");
-                displayPic.setAttribute("src", "profile.png");
+                displayPic.setAttribute("src", `${user.gender === "Male" ? "images/profile.png" : "images/woman.png"}`);
                 userLink.className = "in-users-list";
 
                 if (user.username != localStorage.getItem("username")) {

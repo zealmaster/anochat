@@ -22,6 +22,24 @@ window.onload = () => {
   messageForm.style.display = "none";
 };
 
+socket.on("connect_error", (error) => {
+  if (
+    error.message === "Authentication error" ||
+    error.message === "jwt expired"
+  ) {
+    handleSessionExpiry();
+  }
+});
+
+function handleSessionExpiry() {
+  alert("Your session has expired. Please sign in again.");
+  localStorage.removeItem("token");
+  localStorage.removeItem("username");
+  localStorage.removeItem("receiver");
+
+  window.location.href = "index.html";
+}
+
 messageForm.addEventListener("submit", (e) => {
   e.preventDefault();
   if (message.value == "") return;
@@ -81,25 +99,23 @@ function scrollToBottom() {
   messageContainer.scrollTo(0, messageContainer.scrollHeight);
 }
 
-socket.on("chat-list", (data) => {
-  console.log(data)
-})
-// Display users on the chat home
+// Display users in the chat list
 const userList = document.getElementById("user-list");
 socket.on("chat-list", (data) => {
   userList.innerHTML = "";
   data.forEach((user) => {
-    // Create elements
     const userLink = document.createElement("a");
-    // userLink.href = "#";
     const userItem = document.createElement("li");
     const displayPic = document.createElement("img");
     displayPic.setAttribute("class", "display-pic");
-    displayPic.setAttribute("src", "profile.png");
+    displayPic.setAttribute(
+      "src",
+      `${user.gender === "Male" ? "images/profile.png" : "images/woman.png"}`
+    );
     userLink.className = "user";
 
     if (user.username != localStorage.getItem("username")) {
-      userItem.textContent = user.contact;
+      userItem.textContent = user.username;
       displayPic.textContent = "DP";
       // Add user ID as a data attribute
       userItem.setAttribute("data-id", user._id);
@@ -109,10 +125,10 @@ socket.on("chat-list", (data) => {
       userList.appendChild(userLink);
 
       userItem.addEventListener("click", () => {
-        localStorage.setItem("receiver", user.contact);
+        localStorage.setItem("receiver", user.username);
         clientName.innerText = localStorage.getItem("receiver");
         const privateData = {
-          receiver: user.contact,
+          receiver: user.username,
           sender: username,
         };
         socket.emit("private", privateData);

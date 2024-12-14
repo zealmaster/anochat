@@ -26,6 +26,7 @@ auth.post("/register", async (req: Request, res: Response) => {
     if (!userExists) {
       const newUser = await userCollection?.insertOne({
         username: data.username,
+        gender: data.gender,
         password: await bcrypt.hash(data.password, 10),
         createdAt: new Date(),
       });
@@ -56,7 +57,7 @@ auth.post("/sign-in", async (req: Request, res: Response) => {
         const token = jwt.sign(
           { sub: userExists._id.toHexString(), username: username },
           process.env.JWT_SECRET!,
-          { expiresIn: "2d" }
+          { expiresIn: "90d" }
         );
 
         const userId = userExists._id.toHexString();

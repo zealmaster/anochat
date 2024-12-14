@@ -21,9 +21,17 @@
       <p id="sign-in-error"></p>
       <div class="form-container" id="sign-up">
         <form class="form" id="register-form" method="post">
-          <label for="username">Username</label>
+          <label for="sign-up-username">Username</label>
           <input type="text" name="username" id="sign-up-username" required/>
-          <label for="Password">Password</label>
+
+          <label for="gender">Gender</label>
+          <input type="input" name="gender" id="gender" list="genderList" required/>
+          <datalist id="genderList">
+            <option value="Male"></option>
+            <option value="Female"></option>
+          </datalist>
+          
+          <label for="sign-up-password">Password</label>
           <input type="password" name="password" id="sign-up-password" required/>
           <button type="submit">Register</button>
         </form>
@@ -34,9 +42,9 @@
       <p id="sign-in-error"></p>
       <div class="form-container" id="sign-in">
         <form class="form" id="login-form" method="post" action="/home">
-          <label for="username">Username</label>
+          <label for="sign-in-username">Username</label>
           <input type="text" name="username" id="sign-in-username" required/>
-          <label for="Password">Password</label>
+          <label for="sign-in-password">Password</label>
           <input type="password" name="password" id="sign-in-password" required/>
           <button type="submit">Join chat</button>
         </form>
