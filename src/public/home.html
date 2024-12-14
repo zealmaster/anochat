@@ -2,46 +2,51 @@
 <html>
 
 <head>
-  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width" initial-scale=1.0/>
   <title>Anochat</title>
   <link rel="stylesheet" href="./style.css" />
 </head>
 
 <body>
-  <main>
-    <div>
-      <nav class="app-name">
-        <span>Anochat</span>
-        <span id="logout"> 
-          <img src="logout-icon.webp" height="15px" width="15px" />
-        </span>
-      </nav>
+  <div>
+    <nav class="app-name">
+        <div>
+            <span><a href="users.html"> Anochat </a></span>
+        </div>
+        <div>
+            <span id="home">
+                Home 
+            </span>
+            <span id="logout">
+              <a href="index.html">Logout</a> 
+            </span>
+        </div>
+    </nav>
+</div>
 
-      <div class="users">
-        <ul class="user-list" id="user-list">
-        </ul>
-      </div>
-    </div>
+
+  <div class="users">
+    <ul class="user-list" id="user-list">
+    </ul>
+  </div>
+
+  <main>
 
 
     <div class="chat-container">
-      <div class="client-name" id="client-name">
-      
-      </div>
+      <p class="client-name" id="client-name"></p>
 
       <section>
         <ul class="message-container" id="message-container"></ul>
-        
-          <form id="message-form" class="message-form" action="">
-            <div>
-              <input class="message-input" id="message-input" autocomplete="off" placeholder="message" />
-            </div>
-            <div>
-              <button type="submit">Send</button>
-            </div>
-          </form>
-        
 
+        <form id="message-form" class="message-form" action="">
+          <div>
+            <input class="message-input" id="message-input" autocomplete="off" placeholder="message" />
+          </div>
+          <div>
+            <button type="submit">Send</button>
+          </div>
+        </form>
       </section>
     </div>
 

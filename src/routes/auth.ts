@@ -26,6 +26,7 @@ auth.post("/register", async (req: Request, res: Response) => {
     if (!userExists) {
       const newUser = await userCollection?.insertOne({
         username: data.username,
+        gender: data.gender,
         password: await bcrypt.hash(data.password, 10),
         createdAt: new Date(),
       });

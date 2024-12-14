@@ -36,7 +36,7 @@ function handleSessionExpiry() {
   localStorage.removeItem("token");
   localStorage.removeItem("username");
   localStorage.removeItem("receiver");
-  
+
   window.location.href = "index.html";
 }
 
@@ -99,21 +99,22 @@ function scrollToBottom() {
   messageContainer.scrollTo(0, messageContainer.scrollHeight);
 }
 
-socket.on("chat-list", (data) => {
-  console.log(data);
-});
-// Display users on the chat home
+// Display users in the chat list
 const userList = document.getElementById("user-list");
+
 socket.on("chat-list", (data) => {
   userList.innerHTML = "";
   data.forEach((user) => {
-    // Create elements
+
     const userLink = document.createElement("a");
     // userLink.href = "#";
     const userItem = document.createElement("li");
     const displayPic = document.createElement("img");
     displayPic.setAttribute("class", "display-pic");
-    displayPic.setAttribute("src", "profile.png");
+    displayPic.setAttribute(
+      "src",
+      `${user.gender === "Male" ? "images/profile.png" : "images/woman.png"}`
+    );
     userLink.className = "user";
 
     if (user.username != localStorage.getItem("username")) {
