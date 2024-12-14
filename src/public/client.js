@@ -101,13 +101,10 @@ function scrollToBottom() {
 
 // Display users in the chat list
 const userList = document.getElementById("user-list");
-
 socket.on("chat-list", (data) => {
   userList.innerHTML = "";
   data.forEach((user) => {
-
     const userLink = document.createElement("a");
-    // userLink.href = "#";
     const userItem = document.createElement("li");
     const displayPic = document.createElement("img");
     displayPic.setAttribute("class", "display-pic");
@@ -118,7 +115,7 @@ socket.on("chat-list", (data) => {
     userLink.className = "user";
 
     if (user.username != localStorage.getItem("username")) {
-      userItem.textContent = user.contact;
+      userItem.textContent = user.username;
       displayPic.textContent = "DP";
       // Add user ID as a data attribute
       userItem.setAttribute("data-id", user._id);
@@ -128,10 +125,10 @@ socket.on("chat-list", (data) => {
       userList.appendChild(userLink);
 
       userItem.addEventListener("click", () => {
-        localStorage.setItem("receiver", user.contact);
+        localStorage.setItem("receiver", user.username);
         clientName.innerText = localStorage.getItem("receiver");
         const privateData = {
-          receiver: user.contact,
+          receiver: user.username,
           sender: username,
         };
         socket.emit("private", privateData);

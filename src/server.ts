@@ -16,6 +16,7 @@ import {
   fetchUserChatList,
   fetchChatMessages,
   fetchUsers,
+  usersInContactList,
 } from "./util/helpers";
 
 dotenv.config();
@@ -112,7 +113,7 @@ io.on("connection", async (socket) => {
   });
 
   // Send contacts on chat list to the user
-  socket.emit("chat-list", await fetchUserChatList(username));
+  socket.emit("chat-list", [...await usersInContactList(username)]);
 
   socket.on("private", async (data: ChatQuery) => {
     db = await connectDB();

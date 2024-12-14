@@ -7,6 +7,7 @@ import {
   users,
 } from "../database/collections";
 import { ChatQuery } from "./types";
+import { stringify } from "node:querystring";
 
 let db: Db | null;
 
@@ -54,4 +55,18 @@ export async function fetchUserChatList(user: string) {
   const chatListCollection = db?.collection(chatList);
   const contacts = await chatListCollection?.find({ user: user }).toArray();
   return contacts;
+}
+
+export async function usersInContactList(user: string) {
+  let chatList = new Set();
+  const users: any = await fetchUsers();
+  const contactList: any = await fetchUserChatList(user);
+  for (const user of users) {
+    for (const contact of contactList) {
+      if (user.username === contact.contact) {
+        chatList.add(user);
+      }
+    }
+  }
+  return chatList;
 }
