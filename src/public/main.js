@@ -10,6 +10,7 @@ const signupPassword = document.getElementById("sign-up-password");
 const signinUsername = document.getElementById("sign-in-username");
 const signinPassword = document.getElementById("sign-in-password");
 const signError = document.getElementById("sign-in-error");
+const genderInput = document.getElementById("gender");
 
 // Home page script
 window.onload = () => {
@@ -30,10 +31,12 @@ signupForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   const username = signupUsername.value;
   const password = signupPassword.value;
+  const gender = genderInput.value;
   if (!username || !password) return;
   const data = {
     username,
     password,
+    gender,
   };
 
   try {
