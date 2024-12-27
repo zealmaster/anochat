@@ -65,20 +65,20 @@ body {
     padding: 30px;    
   }
 
-  .message-container::-webkit-scrollbar, .users-container::-webkit-scrollbar {
+  .message-container::-webkit-scrollbar, .users-container::-webkit-scrollbar, .users::-webkit-scrollbar {
     height: 3px;
     width: 7px;
     padding: 3px;
   }
-  .message-container::-webkit-scrollbar-track, .users-container::-webkit-scrollbar-track {
+  .message-container::-webkit-scrollbar-track, .users-container::-webkit-scrollbar-track, .users::-webkit-scrollbar-track {
     background: #f7f8f8;
     border-radius: 10px;
   }
-  .message-container::-webkit-scrollbar-thumb, .users-container::-webkit-scrollbar-thumb {
+  .message-container::-webkit-scrollbar-thumb, .users-container::-webkit-scrollbar-thumb, .users::-webkit-scrollbar-thumb {
     background: #b8aaaa;
     border-radius: 10px;
   }
-  .message-container::-webkit-scrollbar-thumb:hover, .users-container::-webkit-scrollbar-thumb {
+  .message-container::-webkit-scrollbar-thumb:hover, .users-container::-webkit-scrollbar-thumb:hover {
     background: #b8aaaa;
   }
 
@@ -243,8 +243,20 @@ body {
     list-style: none;
   }
 
-  .user-list::-webkit-scrollbar {
-    display: none; /* Hide scrollbar */
+  /* .user-list::-webkit-scrollbar {
+    display: none; 
+  }
+ */
+
+  .users {
+    display: flex; 
+    flex-direction: column;
+    padding: 8px;
+    align-items: center;
+    letter-spacing: 0.75px;
+    width: 600px;
+    overflow-y: hidden;
+    overflow-x: scroll;
   }
 
   .display-pic {
@@ -256,19 +268,10 @@ body {
     text-align: center;
   }
 
-  .users {
-    display: flex; 
-    flex-direction: column;
-    padding: 8px;
-    align-items: center;
-    letter-spacing: 0.75px;
-    overflow-y: hidden;
-    overflow-x: scroll;
-  }
-
-  #logout {
+  .sub-menu, #logout {
     align-self: flex-end;
     font-size: 12px;
+    cursor: pointer;
   }
 
 
@@ -301,10 +304,6 @@ body {
     align-items: center;
     padding: 6px;
     box-shadow: 2px 2px 10px 5px #f6f6f6;;
-  }
-
-  #logout {
-    cursor: pointer;
   }
 
   /* Mobile UI */

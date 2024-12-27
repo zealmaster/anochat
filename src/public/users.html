@@ -13,12 +13,11 @@
             <div>
                 <span><a href="users.html"> Anochat </a></span>
             </div>
-            <div>
-                <!-- <span id="home">
-                    <a href="users.html"> Home </a>
-                </span>  -->
+            <div class="sub-menu">
+                <span id="chats">
+                   chats </span> 
                 <span id="logout">
-                   Logout 
+                   Logout </span>
             </div>
         </nav>
     </div>
@@ -86,6 +85,11 @@
                 }
             })
         })
+        const chats = document.getElementById("chats");
+        chats.addEventListener("click", () => {
+            location.href = 'home.html'
+        });
+
         logout.addEventListener("click", () => {
             localStorage.removeItem("username");
             localStorage.removeItem("receiver");
